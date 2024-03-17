@@ -27,7 +27,6 @@ class PostsController extends Controller
         $data = $this->model->getAll($request);
 
         return response()->json($data);
-
     }
 
     public function createPosts(Request $request)
@@ -41,7 +40,6 @@ class PostsController extends Controller
             $new = $this->model->create($input);
 
             return response()->json($new);
-
         } catch (\Exception $e) {
 
             return response()->json($e->getMessage());
@@ -59,7 +57,6 @@ class PostsController extends Controller
             $new = $this->model->update($input, $id);
 
             return response()->json($new);
-            
         } catch (\Exception $e) {
             response()->json($e->getMessage());
         }
