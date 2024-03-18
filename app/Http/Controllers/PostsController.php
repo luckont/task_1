@@ -21,12 +21,18 @@ class PostsController extends Controller
         $this->model = $model;
     }
 
+    public function getOnePosts($id)
+    {
+        $data = $this->model->getOne($id);
+
+        return $data;
+    }
+
     public function getAllPosts(Request $request)
     {
-
         $data = $this->model->getAll($request);
 
-        return response()->json($data);
+        return $data;
     }
 
     public function createPosts(Request $request)
@@ -37,12 +43,12 @@ class PostsController extends Controller
 
             CreatePostsValidator::validateForm($input);
 
-            $new = $this->model->create($input);
+            $data = $this->model->create($input);
 
-            return response()->json($new);
+            return $data;
         } catch (\Exception $e) {
 
-            return response()->json($e->getMessage());
+            return response()->json($e->getMessage(), 401);
         }
     }
 
@@ -54,11 +60,12 @@ class PostsController extends Controller
 
             UpdatePostsValidator::validateForm($input);
 
-            $new = $this->model->update($input, $id);
+            $data = $this->model->update($input, $id);
 
-            return response()->json($new);
+            return $data;
         } catch (\Exception $e) {
-            response()->json($e->getMessage());
+
+            return response()->json($e->getMessage(), 401);
         }
     }
 }

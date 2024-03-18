@@ -21,8 +21,14 @@ $router->group(["prefix" => "posts"], function () use ($router) {
 
     $router->get('/', "PostsController@getAllPosts");
 
+    $router->get('/{id}', "PostsController@getOnePosts");
+
     $router->post('/', "PostsController@createPosts");
 
     $router->put("/{id}", "PostsController@updatePosts");
+
+    $router->post("/{id}/like", "LikesController@likePosts");
+
+    $router->delete("/{id}/unlike", "LikesController@unlikePosts");
     
 });

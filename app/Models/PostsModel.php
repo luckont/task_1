@@ -13,6 +13,16 @@ class PostsModel
         $this->posts = $posts;
     }
 
+    public function getOne($id)
+    {
+        $data = $this->posts
+            ->with("likes", "shares", "views", "comments")
+            ->find($id);
+
+        //sum $data->likes->count();
+
+        return response()->json($data);
+    }
 
     public function getAll($request)
     {
@@ -27,7 +37,7 @@ class PostsModel
             ->limit($limit)
             ->get();
 
-        return $data;
+        return response()->json($data);
     }
 
     public function create($input)
@@ -50,7 +60,7 @@ class PostsModel
 
         $newPosts->save();
 
-        return $newPosts;
+        return response()->json($newPosts, 200);
     }
 
     public function update($input, $id)
@@ -60,11 +70,11 @@ class PostsModel
         $author = $newPosts->author_id;
 
         if (!$newPosts) {
-            return "Posts not found !";
+            return response()->json("Posts not found !", 401);
         }
 
         if (empty($input['author_id']) || $author !== $input['author_id']) {
-            return "You are not authenticated !";
+            return response()->json("You are not authenticated !", 401);
         } //Middleware 
 
         //Xu ly media, tag o Fronend
@@ -77,6 +87,6 @@ class PostsModel
 
         $newPosts->save();
 
-        return $newPosts;
+        return response()->json($newPosts, 200);
     }
 }
