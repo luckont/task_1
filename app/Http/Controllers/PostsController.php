@@ -24,48 +24,36 @@ class PostsController extends Controller
     public function getOnePosts($id)
     {
         $data = $this->model->getOne($id);
-
         return $data;
     }
 
     public function getAllPosts(Request $request)
     {
         $data = $this->model->getAll($request);
-
         return $data;
     }
 
     public function createPosts(Request $request)
     {
+        $input = $request->all();
+        (new CreatePostsValidator())->validate($input);
         try {
-
-            $input = $request->all();
-
-            CreatePostsValidator::validateForm($input);
-
             $data = $this->model->create($input);
-
-            return $data;
         } catch (\Exception $e) {
-
             return response()->json($e->getMessage(), 401);
         }
+        return $data;
     }
 
     public function updatePosts(Request $request, $id)
     {
+        $input = $request->all();
+        (new UpdatePostsValidator())->validate($input);
         try {
-
-            $input = $request->all();
-
-            UpdatePostsValidator::validateForm($input);
-
             $data = $this->model->update($input, $id);
-
-            return $data;
         } catch (\Exception $e) {
-
             return response()->json($e->getMessage(), 401);
         }
+        return $data;
     }
 }

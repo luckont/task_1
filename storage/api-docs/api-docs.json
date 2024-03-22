@@ -5,6 +5,68 @@
         "version": "0.1"
     },
     "paths": {
+        "/posts/{$id}": {
+            "get": {
+                "description": "Get a posts",
+                "responses": {
+                    "200": {
+                        "description": "Get a posts successfully !"
+                    }
+                }
+            },
+            "put": {
+                "description": "Update a posts",
+                "requestBody": {
+                    "description": "Data of the new posts update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "author_id": {
+                                        "type": "number"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "media": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "tag": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "category_id": {
+                                        "type": "string"
+                                    },
+                                    "updated_at": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update posts successfully !"
+                    },
+                    "401": {
+                        "description": "There was an error during the update process !"
+                    }
+                }
+            }
+        },
         "/posts": {
             "get": {
                 "description": "Get a list of posts",
@@ -82,15 +144,18 @@
                 "responses": {
                     "200": {
                         "description": "Create posts successfully !"
+                    },
+                    "401": {
+                        "description": "There was an error during creation !"
                     }
                 }
             }
         },
-        "/posts/{$id}": {
-            "put": {
-                "description": "Update a posts",
+        "/posts/{$id}/like": {
+            "post": {
+                "description": "Like a posts",
                 "requestBody": {
-                    "description": "Data of the new posts update",
+                    "description": "Data of the like posts",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -99,28 +164,10 @@
                                     "author_id": {
                                         "type": "number"
                                     },
-                                    "title": {
-                                        "type": "string"
+                                    "posts_id": {
+                                        "type": "number"
                                     },
-                                    "content": {
-                                        "type": "string"
-                                    },
-                                    "media": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "tag": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "category_id": {
-                                        "type": "string"
-                                    },
-                                    "updated_at": {
+                                    "created_at": {
                                         "type": "string",
                                         "format": "date-time"
                                     }
@@ -131,8 +178,11 @@
                     }
                 },
                 "responses": {
+                    "401": {
+                        "description": "You have liked this posts !"
+                    },
                     "200": {
-                        "description": "Update posts successfully !"
+                        "description": "You have liked this posts !"
                     }
                 }
             }

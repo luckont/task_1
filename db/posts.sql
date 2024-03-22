@@ -34,11 +34,7 @@ CREATE TABLE `posts` (
   `content` varchar(10000) NOT NULL,
   `media` json DEFAULT NULL,
   `tags` json DEFAULT NULL,
-  `views` int DEFAULT NULL,
-  `likes` int DEFAULT NULL,
-  `shares` int DEFAULT NULL,
-  `comment_id` int DEFAULT NULL,
-  `category_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

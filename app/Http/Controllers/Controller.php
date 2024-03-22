@@ -9,6 +9,12 @@ use Laravel\Lumen\Routing\Controller as BaseController;
  */
 
 /**
+ *  * @OA\Get(
+ *     path="/posts/{$id}",
+ *     description="Get a posts",
+ *     @OA\Response(response="200", description="Get a posts successfully !")
+ * )
+ * 
  * @OA\Get(
  *     path="/posts",
  *     description="Get a list of posts",
@@ -50,7 +56,8 @@ use Laravel\Lumen\Routing\Controller as BaseController;
  *             )
  *         )
  *     ),
- *     @OA\Response(response="200", description="Create posts successfully !")
+ *     @OA\Response(response="200", description="Create posts successfully !"),
+ *     @OA\Response(response="401", description="There was an error during creation !")
  * )
  * 
  *  * @OA\Put(
@@ -74,7 +81,8 @@ use Laravel\Lumen\Routing\Controller as BaseController;
  *             )
  *         )
  *     ),
- *     @OA\Response(response="200", description="Update posts successfully !")
+ *     @OA\Response(response="200", description="Update posts successfully !"),
+ *     @OA\Response(response="401", description="There was an error during the update process !")
  * )
  */
 

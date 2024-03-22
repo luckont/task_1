@@ -2,23 +2,19 @@
 
 namespace App\Http\Validators;
 
-use Illuminate\Support\Facades\Validator;
+use App\Http\Validators\BaseValidator;
 
-class UpdatePostsValidator
+class UpdatePostsValidator extends BaseValidator
 {
-    public static function validateForm(array $data)
+    protected function rules()
     {
-        $validator = Validator::make(
-            $data,
-            [
-                'id' => 'exists:posts, id',
-                'author_id' => 'string',
-                'title' => 'string|max:255',
-                'content' => 'string|max:10000',
-                'tags' => 'nullable|array', //array strinng
-                'category_id' => 'nullable|string|max:255'
-            ]
-        );
-        return $validator->validate();
+        return [
+            'id' => 'exists:posts, id',
+            'author_id' => 'integer',
+            'title' => 'string|max:255',
+            'content' => 'string|max:10000',
+            'tags' => 'nullable|array',
+            'category' => 'nullable|string|max:255'
+        ];
     }
 }
