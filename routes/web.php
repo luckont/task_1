@@ -30,5 +30,5 @@ $router->group(["prefix" => "posts"], function () use ($router) {
     $router->post("/{id}/like", "LikesController@likePosts");
 
     $router->delete("/{id}/unlike", "LikesController@unlikePosts");
-    
 });
+// 123122
